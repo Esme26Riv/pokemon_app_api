@@ -15,7 +15,7 @@ object ConexionPokemonAPI{
     @Singleton
     fun conexion_al_server() : Retrofit.Builder {
         return Retrofit.Builder()
-            .baseUrl("https://pokeapi.co/api/v2")
+            .baseUrl("https://pokeapi.co/api/v2/")
             .addConverterFactory(GsonConverterFactory.create())
     }
 

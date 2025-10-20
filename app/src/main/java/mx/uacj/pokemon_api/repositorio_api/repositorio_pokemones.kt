@@ -5,9 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import mx.uacj.pokemon_api.modelos.Pokemon
 import java.util.Collections.emptyList
 
+
 class AlmacenDatosPokemon(
     override val pokemones: MutableState<List<Pokemon>> = mutableStateOf(emptyList<Pokemon>())
-) :RepositorioPokemones{}
+) :RepositorioPokemones{
+}
 
 
 interface RepositorioPokemones{
