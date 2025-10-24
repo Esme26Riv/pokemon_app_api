@@ -18,6 +18,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import mx.uacj.pokemon_api.modelos.Pokemon
+import mx.uacj.pokemon_api.ui.molecula.PokemonLista
 import mx.uacj.pokemon_api.viewmodels.PokemonesViewModel
 
 
@@ -37,7 +38,7 @@ fun PantallaPrincipal(modificador: Modifier = Modifier,
 
                 Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                     for (pokemon in controlador_pokemones.pokemones.value) {
-                        Text("POKEMONO: ${pokemon.name}", modifier = Modifier.clickable {
+                        PokemonLista(pokemon = pokemon, modificador = Modifier.clickable {
                             pokemon_seleccionado = pokemon
                             contrlador_navegacion.navigate("pantalla_pokemones")
                         })
