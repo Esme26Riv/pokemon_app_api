@@ -26,7 +26,7 @@ class PokemonesViewModel @Inject constructor(
     public val pokemones: State<List<Pokemon>> = repositorio.pokemones
 
     init {
-        for(indice_pokemon in 1..1000) {
+        for(indice_pokemon in 1..50) {
             descargar_pokemon(indice_pokemon)
         }
     }

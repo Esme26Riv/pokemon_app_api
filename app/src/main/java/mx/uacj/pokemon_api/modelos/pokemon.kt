@@ -3,6 +3,7 @@ package mx.uacj.pokemon_api.modelos
 data class Pokemon(
     val id: Int,
     val name: String,
+    val types: List<Tipos>,
     val base_experience: Int,
     val height: Int,
     val is_default: Boolean,
