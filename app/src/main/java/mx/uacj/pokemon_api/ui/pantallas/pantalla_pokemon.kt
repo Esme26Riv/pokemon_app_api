@@ -1,46 +1,95 @@
 package mx.uacj.pokemon_api.ui.pantallas
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.provider.FontsContractCompat.Columns
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.FontWeight
 import mx.uacj.pokemon_api.modelos.Pokemon
 
 @Composable
-fun PantallaPokemon(modificador: Modifier = Modifier, pokemon: Pokemon){
-    Column(modifier = modificador){
-        Text("Nombre: ${pokemon.name}")
-        //Text("Tipos: ${pokemon}")
-        for(tipos in pokemon.types){
-            Text("tipo: ${tipos.type.name}")
+fun PantallaPokemon(modificador: Modifier = Modifier, pokemon: Pokemon) {
+    Column(
+        modifier = modificador
+            .fillMaxSize()
+            .background(Color(0xFFE8F5E9)) // verde clarito de fondo
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        // Nombre del Pokémon
+        Text(
+            text = "Nombre: ${pokemon.name.uppercase()}",
+            fontSize = 24.sp,
+            color = Color(0xFF1B5E20), // verde oscuro
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(bottom = 10.dp)
+                .border(2.dp, Color(0xFF1B5E20), RoundedCornerShape(8.dp))
+                .padding(8.dp)
+        )
+
+        // Tipos
+        for (tipos in pokemon.types) {
+            Text(
+                text = "Tipo: ${tipos.type.name}",
+                color = Color(0xFF2E7D32),
+                fontSize = 18.sp,
+                modifier = Modifier.padding(4.dp)
+            )
         }
-        Row {
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        // Estadísticas
+        Text(
+            text = "Estadísticas:",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color(0xFF1B5E20),
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
+
+        Column(//caja
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(1.dp, Color(0xFF1B5E20), RoundedCornerShape(10.dp))
+                .background(Color.White)
+                .padding(10.dp)
+        ) {
             for (estadistica in pokemon.stats) {
-                //Text("Estadistica: ${estadistica}", modifier = Modifier.padding(5.dp))
-                Column {
-                    Text("${estadistica.stat.name}")
-                    //Spacer(Modifier.weight(0.8f))
-
-                    Text("Base: ${estadistica.base_stat}")
-                    //Spacer(Modifier.weight(0.8f))
-
-                    Text("Esfuerzo: ${estadistica.effort}")
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween //separacion en los extremos
+                ) {
+                    Text(
+                        text = estadistica.stat.name,
+                        fontSize = 16.sp,
+                        color = Color.Black
+                    )
+                    Text(//valor de base de la estadistica base_stat
+                        text = "Base: ${estadistica.base_stat} | Esfuerzo: ${estadistica.effort}",//valor de esfuerzo effort
+                        fontSize = 16.sp,
+                        color = Color.DarkGray
+                    )
                 }
-
             }
         }
     }
-
 }
 
 @Preview
 @Composable
-fun previsualizacion_PantallaPokemon(){
+fun previsualizacion_PantallaPokemon() {
     // PantallaPokemon()
 }
+
