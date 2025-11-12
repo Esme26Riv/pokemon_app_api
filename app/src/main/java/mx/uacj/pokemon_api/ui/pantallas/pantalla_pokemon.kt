@@ -17,10 +17,34 @@ import mx.uacj.pokemon_api.modelos.Pokemon
 
 @Composable
 fun PantallaPokemon(modificador: Modifier = Modifier, pokemon: Pokemon) {
+
+    // Obtener el primer tipo del Pokémon
+    val tipoPrincipal = pokemon.types.firstOrNull()?.type?.name?.lowercase() ?: ""
+
+    // Asignar color según el tipo principal
+    val backgroundColor = when (tipoPrincipal) {
+        "fire" -> Color(0xFFFFA726)      // Fuego
+        "water" -> Color(0xFF64B5F6)     // Agua
+        "grass" -> Color(0xFFA5D6A7)     // Planta
+        "electric" -> Color(0xFFFFF176)  // Eléctrico
+        "psychic" -> Color(0xFFF48FB1)   // Psíquico
+        "ice" -> Color(0xFFB3E5FC)       // Hielo
+        "rock" -> Color(0xFFD7CCC8)      // Roca
+        "ground" -> Color(0xFFE0C68C)    // Tierra
+        "poison" -> Color(0xFFCE93D8)    // Veneno
+        "bug" -> Color(0xFF9CCC65)       // Bicho
+        "flying" -> Color(0xFF90CAF9)    // Volador
+        "ghost" -> Color(0xFFB39DDB)     // Fantasma
+        "dragon" -> Color(0xFF9575CD)    // Dragón
+        "fairy" -> Color(0xFFF8BBD0)     // Hada
+        else -> Color(0xFFE8F5E9)        // Por defecto (verde claro)
+    }
+
+    // Estructura principal con fondo dinámico
     Column(
         modifier = modificador
             .fillMaxSize()
-            .background(Color(0xFFE8F5E9)) // verde clarito de fondo
+            .background(backgroundColor) //Fondo depende del tipo
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -57,7 +81,8 @@ fun PantallaPokemon(modificador: Modifier = Modifier, pokemon: Pokemon) {
             modifier = Modifier.padding(bottom = 8.dp)
         )
 
-        Column(//caja
+        //caja
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .border(1.dp, Color(0xFF1B5E20), RoundedCornerShape(10.dp))
